@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joey de Villa - DevRel Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Neue Montreal', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(30, 64, 175, 0.1) 100%);
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .project-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-client { background: #dbeafe; color: #1e40af; }
+        .badge-content { background: #d1fae5; color: #065f46; }
+        .badge-community { background: #e9d5ff; color: #6b21a8; }
+        
+        .section-header {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6 0%, #1e40af 100%);
+            border-radius: 2px;
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: #3b82f6;
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 8px;
+        }
+        
+        .achievement-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-4">Joey de Villa</h1>
+                <p class="text-xl md:text-2xl mb-8 text-blue-100">Developer relations expert and technical content creator</p>
+                <p class="text-lg mb-12 max-w-2xl mx-auto text-blue-50">
+                    15+ years of building developer communities, creating engaging content, building applications, and fostering collaboration between developers and organizations
+                </p>
+                
+                <!-- Key Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                    <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg p-4">
+                        <div class="text-3xl font-bold">10M+</div>
+                        <div class="text-sm text-blue-100">pageviews on GlobalNerdy.com,<br />my tech blog</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg p-4">
+                        <div class="text-3xl font-bold">20K+</div>
+                        <div class="text-sm text-blue-100">monthly readers on GlobalNerdy.com</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg p-4">
+                        <div class="text-3xl font-bold">6K+</div>
+                        <div class="text-sm text-blue-100">members in my Meetup groups</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg p-4">
+                        <div class="text-3xl font-bold">15+</div>
+                        <div class="text-sm text-blue-100">years experience as a developer and developer relations professional</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex space-x-8 overflow-x-auto py-4">
+                <a href="#client-work" class="text-gray-700 hover:text-blue-600 whitespace-nowrap font-medium transition">Client Work</a>
+                <a href="#content" class="text-gray-700 hover:text-blue-600 whitespace-nowrap font-medium transition">Content and Courses</a>
+                <a href="#community" class="text-gray-700 hover:text-blue-600 whitespace-nowrap font-medium transition">Community</a>
+                <a href="#presentations" class="text-gray-700 hover:text-blue-600 whitespace-nowrap font-medium transition">Presentations</a>
+                <a href="#books" class="text-gray-700 hover:text-blue-600 whitespace-nowrap font-medium transition">Books</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- Featured Project -->
+        <section id="client-work" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 section-header">Featured Client Work</h2>
+            
+            <!-- HP ZGX Nano Card -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover mb-8">
+                <div class="md:flex">
+                    <div class="md:w-1/3 bg-gradient-to-br from-blue-500 to-purple-600 p-8 flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i class="fas fa-microchip text-6xl mb-4"></i>
+                            <h3 class="text-2xl font-bold">HP ZGX Nano</h3>
+                            <p class="text-sm text-purple-100 mt-2">AI Workstation DevRel</p>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="project-badge badge-client">Client Work</span>
+                            <span class="text-sm text-gray-500">60-Day Sprint • 2025</span>
+                        </div>
+                        
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Established HP's developer relations program for the ZGX Nano AI Workstation from scratch. Positioned HP as a serious player in the local AI compute market with zero PR budget.
+                        </p>
+                        
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 italic text-gray-700">
+                            "From near-zero presence to industry recognition in 8 weeks"
+                        </div>
+                        
+                        <!-- Featured Podcast -->
+                        <div class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg p-5 mb-6 text-white">
+                            <div class="flex items-start">
+                                <i class="fas fa-podcast text-3xl mr-4 mt-1"></i>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-lg mb-2">Featured on <em>Intelligent Machines</em> Podcast, episode 842</h4>
+                                    <img src="./images/intelligent_machines.png" alt="Intelligent Machines Podcast" class="w-full max-w-xs mb-3 rounded-lg shadow-md">
+                                    <p class="text-sm text-blue-100 mb-3">
+                                        Appeared with Andrew Hawthorn, Product Lead for HP's ZGX AI workstations, on this top AI podcast to discuss the ZGX Nano and local AI compute.
+                                    </p>
+                                    <a href="https://www.youtube.com/watch?v=m7jnfefFOI0" target="_blank" class="inline-flex items-center bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition text-sm">
+                                        <i class="fas fa-play-circle mr-2"></i>Listen to Interview
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Achievements Grid -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-6">
+                            <div class="flex items-start space-x-3">
+                                <div class="achievement-icon bg-blue-100 text-blue-600">
+                                    <i class="fas fa-podcast"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Earned Media</h4>
+                                    <p class="text-sm text-gray-600">Featured on TWiT's Intelligent Machines podcast</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="achievement-icon bg-green-100 text-green-600">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Sales Enablement</h4>
+                                    <p class="text-sm text-gray-600">50+ pages of documentation, 12 use cases</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="achievement-icon bg-purple-100 text-purple-600">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Strategic Positioning</h4>
+                                    <p class="text-sm text-gray-600">Differentiated from NVIDIA, Dell, Lenovo</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <div class="achievement-icon bg-orange-100 text-orange-600">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Content Impact</h4>
+                                    <p class="text-sm text-gray-600">Use cases adopted as official training videos</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tech Stack -->
+                        <div class="border-t pt-4">
+                            <p class="text-xs font-semibold text-gray-500 mb-2">TECHNOLOGIES</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">NVIDIA GB10</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">CUDA 13</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">DGX OS</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Client Projects Grid -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Writer Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-green-400 to-teal-500 h-32 flex items-center justify-center">
+                        <i class="fas fa-pen-fancy text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">Writer</h3>
+                            <span class="project-badge badge-client">Client</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Wrote developer portal sections, cookbooks, Framework documentation, and API docs for their Palmyra LLM series.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <a href="https://dev.writer.com/home/introduction" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                View Portal <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                            <a href="https://github.com/writer/cookbooks" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                Cookbooks <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Packfiles Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-indigo-400 to-blue-500 h-32 flex items-center justify-center">
+                        <i class="fab fa-github text-white text-5xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-xl font-bold text-gray-900">Packfiles</h3>
+                            <span class="project-badge badge-client">Client</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            Wrote comprehensive documentation for Warp, a service for migrating repositories to GitHub.
+                        </p>
+                        <a href="https://kb.packfiles.io/" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                            View Documentation <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content and Courses Section -->
+        <section id="content" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 section-header">Content and Courses</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Auth0 Card -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-gradient-to-br from-orange-400 to-red-500 p-6 text-white">
+                        <i class="fas fa-lock text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Auth0 Blog</h3>
+                        <p class="text-sm text-orange-100 mt-1">Developer Content</p>
+                    </div>
+                    <div class="p-6">
+                        <img src="./images/auth0_articles.png" alt="Auth0 Articles" class="w-full mb-4 rounded-lg shadow-md">
+                        <div class="stat-card rounded-lg p-4 mb-4">
+                            <div class="text-2xl font-bold text-blue-600">20K+</div>
+                            <div class="text-sm text-gray-600">Monthly readers growth</div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Grew mobile dev readership from near-zero to 20,000/month. Articles rank higher than Apple's docs.
+                        </p>
+                        <a href="https://auth0.com/blog/authors/joey-devilla/" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                            View Articles <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Kodeco Python Course -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-gradient-to-br from-yellow-400 to-amber-500 p-6 text-white">
+                        <i class="fab fa-python text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Python for AI</h3>
+                        <p class="text-sm text-yellow-100 mt-1">Kodeco Course</p>
+                    </div>
+                    <div class="p-6">
+                        <img src="./images/python_for_ai.jpg" alt="Python for AI Course" class="w-full mb-4 rounded-lg shadow-md">
+                        <span class="project-badge badge-content mb-3">Free Course</span>
+                        <p class="text-sm text-gray-600 mb-4 mt-3">
+                            Comprehensive course teaching developers how to use Python for AI and machine learning applications.
+                        </p>
+                        <a href="https://www.kodeco.com/ai/paths/python/45597998-python-for-ai-a-crash-course" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                            Access Course <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Global Nerdy -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                    <div class="bg-gradient-to-br from-pink-400 to-rose-500 p-6 text-white">
+                        <i class="fas fa-blog text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Global Nerdy</h3>
+                        <p class="text-sm text-pink-100 mt-1">Personal Tech Blog</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="stat-card rounded-lg p-4 mb-4">
+                            <div class="text-2xl font-bold text-blue-600">10M+</div>
+                            <div class="text-sm text-gray-600">Total pageviews since 2006</div>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Nearly 5,000 articles on technology, programming, and nerd culture.
+                        </p>
+                        <a href="https://globalnerdy.com/" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                            Visit Blog <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Building -->
+        <section id="community" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 section-header">Community Building</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="flex items-center mb-6">
+                    <div class="achievement-icon bg-blue-100 text-blue-600 mr-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Tampa Bay Tech Community</h3>
+                        <p class="text-gray-600">Organizing meetups, events, and fostering collaboration</p>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="border border-blue-200 rounded-lg p-5 bg-blue-50">
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">Tampa Bay Python</h4>
+                        <p class="text-3xl font-bold text-blue-600 mb-1">2,100+</p>
+                        <p class="text-sm text-gray-600">members</p>
+                        <a href="https://www.meetup.com/tampa-bay-python/" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium mt-3 inline-block">
+                            View Meetup →
+                        </a>
+                    </div>
+                    
+                    <div class="border border-purple-200 rounded-lg p-5 bg-purple-50">
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">Tampa Bay Artificial Intelligence</h4>
+                        <p class="text-3xl font-bold text-purple-600 mb-1">2,100+</p>
+                        <p class="text-sm text-gray-600">members</p>
+                        <a href="https://www.meetup.com/tampa-artificial-intelligence-meetup/" target="_blank" class="text-sm text-purple-600 hover:text-purple-700 font-medium mt-3 inline-block">
+                            View Meetup →
+                        </a>
+                    </div>
+                    
+                    <div class="border border-teal-200 rounded-lg p-5 bg-teal-50">
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">Suncoast Software Skills</h4>
+                        <p class="text-3xl font-bold text-teal-600 mb-1">1,700+</p>
+                        <p class="text-sm text-gray-600">members</p>
+                        <a href="https://www.meetup.com/suncoast-software-skills/" target="_blank" class="text-sm text-teal-600 hover:text-teal-700 font-medium mt-3 inline-block">
+                            View Meetup →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6 mt-6">
+                    <div class="border border-green-200 rounded-lg p-5 bg-green-50">
+                        <h4 class="font-bold text-lg mb-2 text-gray-900">Coders, Creatives, and Craft Beer</h4>
+                        <p class="text-3xl font-bold text-green-600 mb-1">800+</p>
+                        <p class="text-sm text-gray-600">members</p>
+                        <a href="https://www.meetup.com/coders-creatives-and-craft-beer/" target="_blank" class="text-sm text-green-600 hover:text-green-700 font-medium mt-3 inline-block">
+                            View Meetup →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-gray-50 rounded-lg p-5">
+                    <h4 class="font-semibold text-gray-900 mb-2 flex items-center">
+                        <i class="fas fa-calendar-alt text-blue-600 mr-2"></i>
+                        Weekly Tampa Bay Tech Events List
+                    </h4>
+                    <p class="text-sm text-gray-600">
+                        A weekly list of Tampa Bay’s tech, entrepreneur, and nerd events, produced with the assistance of a Python script that scrapes event sites and schedule tables. Serving the Tampa Bay technology community since 2017.
+                    </p>
+                    <p>
+                        <a href="https://globalnerdy.com/list/" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium mt-3 inline-block">
+                            View this week’s list →
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Presentations Section -->
+        <section id="presentations" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 section-header">Presentations and Videos</h2>
+            
+            <!-- Presentation Categories -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- AI Presentations -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gradient-to-r from-purple-500 to-indigo-600 p-6 text-white">
+                        <i class="fas fa-robot text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">AI and Machine Learning</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=F2dm0ufm7ZA" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">Make Smarter AI Apps with RAG</a>
+                                    <p class="text-sm text-gray-600">Civo Navigate Local Tampa 2024</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=eIErTksBrdo" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">AI: How to Jump In Right Away</a>
+                                    <p class="text-sm text-gray-600">Austin Forum on Technology and Society</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=xjGuNY6bmCs" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">You're Not Too Late to the AI Party</a>
+                                    <p class="text-sm text-gray-600">Civo Navigate North America 2024</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Security/Auth Presentations -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gradient-to-r from-orange-500 to-red-600 p-6 text-white">
+                        <i class="fas fa-shield-alt text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">Security and Authentication</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=W3QApmKXJL0" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">The CrowdStrike Outage Explained</a>
+                                    <p class="text-sm text-gray-600">Global Nerdy YouTube Channel</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=tIbWFC1LauY" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">xz Made EZ</a>
+                                    <p class="text-sm text-gray-600">BSides Tampa 2024</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=dsst_TKgClY" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">Android Authentication with Kotlin</a>
+                                    <p class="text-sm text-gray-600">OktaDev YouTube Channel</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Career/Tech Culture -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gradient-to-r from-green-500 to-teal-600 p-6 text-white">
+                        <i class="fas fa-briefcase text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">Technology Career</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=Msp7yN3my5c" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">How to Survive Your Layoff Meeting</a>
+                                    <p class="text-sm text-gray-600">Global Nerdy YouTube Channel</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=4gGXrS4j-5I" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">Layoff Survival: Mental Health</a>
+                                    <p class="text-sm text-gray-600">Global Nerdy YouTube Channel</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=VEFngcwNJFw" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">An AI Roasted My LinkedIn Profile</a>
+                                    <p class="text-sm text-gray-600">Global Nerdy YouTube Channel</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- ARKit and General Tech -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-600 p-6 text-white">
+                        <i class="fas fa-cube text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">ARKit and General Tech</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i class="fas fa-chalkboard-teacher text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">ARKit Workshop</p>
+                                    <p class="text-sm text-gray-600">4-hour pre-conference workshop at RWDevCon 2018 - built 4 AR apps</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-chalkboard-teacher text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">ARKit Development Session</p>
+                                    <p class="text-sm text-gray-600">Highest-rated presenter at RWDevCon 2018</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-video text-blue-500 mr-3 mt-1"></i>
+                                <div>
+                                    <a href="https://www.youtube.com/watch?v=B9WyrVabbeo" target="_blank" class="font-semibold text-gray-900 hover:text-blue-600">How Computers Work "Under the Hood"</a>
+                                    <p class="text-sm text-gray-600">Tampa Devs, November 2023</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Section -->
+        <section id="books" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 section-header">Books</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- iOS Apprentice -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-8 text-white text-center">
+                        <i class="fas fa-book text-5xl mb-4"></i>
+                        <h3 class="text-xl font-bold">iOS Apprentice</h3>
+                        <p class="text-sm text-blue-100 mt-2">8th Edition (2020-2021)</p>
+                    </div>
+                    <div class="p-6">
+                        <span class="project-badge badge-content mb-3">Co-Author</span>
+                        <p class="text-sm text-gray-600 mt-3 mb-4">
+                            Wrote 485 pages covering SwiftUI framework for iOS 12 and iOS 13. Flagship publication for RayWenderlich.com (now Kodeco.com).
+                        </p>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-3 mb-4 text-sm">
+                            <p class="text-gray-700">Learned and documented SwiftUI from scratch using Apple's early documentation.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <p>
+                                <a href="https://www.kodeco.com/books/ios-apprentice/v8.2" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                View Book <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                                </a>
+                                <br />
+                                <a href="https://drive.google.com/file/d/1h4HLuBUy-WpOymX3CPTk67PzZdZhxuF2/view?usp=sharing" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                    Download PDF <i class="fas fa-download ml-1 text-xs"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ARKit by Tutorials -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-600 p-8 text-white text-center">
+                        <i class="fas fa-vr-cardboard text-5xl mb-4"></i>
+                        <h3 class="text-xl font-bold">ARKit by Tutorials</h3>
+                        <p class="text-sm text-purple-100 mt-2">2018</p>
+                    </div>
+                    <div class="p-6">
+                        <span class="project-badge badge-content mb-3">Technical Editor</span>
+                        <p class="text-sm text-gray-600 mt-3 mb-4">
+                            Technical editor for comprehensive guide on building augmented reality apps for iOS using Apple's ARKit framework.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Published by RayWenderlich.com</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <p>
+                                <a href="https://www.kodeco.com/5405-introducing-arkit-by-tutorials" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                    View Book <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                                </a>
+                                <br />
+                                <a href="https://drive.google.com/file/d/1U89_th6JWdfXhw2cUb-nNK3XxBNVSKpu/view?usp=sharing" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                    Download PDF <i class="fas fa-download ml-1 text-xs"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Shopify Application Development -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-br from-green-500 to-emerald-600 p-8 text-white text-center">
+                        <i class="fas fa-shopping-cart text-5xl mb-4"></i>
+                        <h3 class="text-xl font-bold">Shopify Application Development</h3>
+                        <p class="text-sm text-green-100 mt-2">2014</p>
+                    </div>
+                    <div class="p-6">
+                        <span class="project-badge badge-content mb-3">Technical Editor</span>
+                        <p class="text-sm text-gray-600 mt-3 mb-4">
+                            Technical editor for guide on building applications for the Shopify e-commerce platform.
+                        </p>
+                        <div class="flex items-center text-sm text-gray-600 mb-4">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            <span>Published by Packt</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <p>
+                            <a href="https://www.packtpub.com/en-ca/product/shopify-application-development-9781783281060" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                View Book <i class="fas fa-external-link-alt ml-1 text-xs"></i>
+                            </a>
+                            <br />
+                            <a href="https://drive.google.com/file/d/1fVUfO788-BenNHBYSCQka5yF3FStC4gR/view?usp=sharing" target="_blank" class="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                                Download PDF <i class="fas fa-download ml-1 text-xs"></i>
+                            </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="gradient-bg rounded-2xl shadow-xl p-12 text-center text-white">
+            <h2 class="text-3xl font-bold mb-4">Let's work together!</h2>
+            <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
+                Looking for an experienced developer relations professional?<br />
+                I'd love to discuss how I can help your organization.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://globalnerdy.com/" target="_blank" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+                    Visit My Blog
+                </a>
+                <a href="https://www.linkedin.com/in/joeydevilla/" target="_blank" class="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition">
+                    <i class="fab fa-linkedin mr-2"></i>Connect on LinkedIn
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">&copy; 2025 Joey de Villa. Developer Relations Expert.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/accordionguy" target="_blank" class="hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+                <a href="https://www.youtube.com/@globalnerdy" target="_blank" class="hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                <a href="https://www.linkedin.com/in/joeydevilla/" target="_blank" class="hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Default Statcounter code for DevRel Portfolio
+    https://accordionguy.github.io/devrel-portfolio/ -->
+    <script type="text/javascript">
+    var sc_project=13148358; 
+    var sc_invisible=1; 
+    var sc_security="9c357d9d"; 
+    </script>
+    <script type="text/javascript"
+    src="https://www.statcounter.com/counter/counter.js"
+    async></script>
+    <noscript><div class="statcounter"><a title="Web Analytics"
+    href="https://statcounter.com/" target="_blank"><img
+    class="statcounter"
+    src="https://c.statcounter.com/13148358/0/9c357d9d/1/"
+    alt="Web Analytics"
+    referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+    <!-- End of Statcounter Code -->
+     
+</body>
+</html>
