@@ -29,7 +29,9 @@
 
         <ol>
             <li><a href="#summary">Summary</a></li>
-            <li><a href="#first_podcast_2026">My first podcast of 2026</a></li>
+            <li><a href="#arc_of_ai">Speaking at Arc of AI</a></li>
+            <li><a href="#hammerspace">Hammerspace</a></li>
+            <li><a href="#twit">My appearances on <em>This Week in Tech</em></a></li>
             <li><a href="#hp_zgx_nano">HP ZGX Nano</a></li>
             <li><a href="#writers_developer_portal">Writer’s developer portal</a></li>
             <li><a href="#kodecos_python_for_ai_course">Kodeco’s <em>Python for AI</em> course</a></li>
@@ -59,10 +61,83 @@
             <li><strong>Experience in both technical writing and developer advocacy</strong>, with a focus on creating content that resonates with developers.</li>
         </ul>
 
-        <a name="first_podcast_2026"></a>
-        <h2>My first podcast of 2026</h2>
+        <a name="arc_of_ai"></a>
+        <h2>Speaking at Arc of AI</h2>
+        <p><img src="images/arc_of_ai_presentation_promo.jpg" alt="I’ll be speaking at Arc of AI - April 13-16, 2026 • Austin, TX - AEO (AI Engine Optimization): Writing Docs and Code for Machines" /></p>
+        <p><p><strong>I'll be presenting <em><a href="https://www.arcofai.com/">AEO (AI Engine Optimization): Writing Docs and Code for Machines</a></em> at <a href="https://www.arcofai.com/">Arc of AI 2026</a> in Austin, Texas on April 15, 2026.</strong> The talk makes the case that SEO is dead for developers — the new workflow for building software has shifted from the Google search bar to the IDE prompt box. When a developer asks an AI agent like Claude, Cursor, or a custom MCP server to implement a library or integrate an API, they're no longer the primary consumer of your documentation. The LLM is.</p>
+
+        <p>If your code, documentation, and reference architectures aren't optimized for machine ingestion, the AI will hallucinate the implementation — and the developer will blame your product. The session covers the emerging standards for addressing this, including the <code>llms.txt</code> proposal and Andrew Ng's Context-Hub, and dives into practical techniques: trimming "marketing fluff" to preserve the context budget for actual logic, and structuring Python and JavaScript repositories so AI agents can parse abstract syntax trees without ambiguity.</p>
+
+        <a name="hammerspace"></a>
+        <h2>Hammerspace</h2>
+        <p><img src="images/hammerspace_ai_data_platform.jpg" alt="Hammerspace AI Data Platform" /></p>
+        <p><strong>From January to the end of March 2026, I worked as a contract developer at <a href="https://hammerspace.com/">Hammerspace,</a> a data orchestration and global file system company</strong>, referred by my friend <a href="https://www.linkedin.com/in/mcbloom/">Mike Bloom,</a> their Director of AI Architecture, with whom I worked at OpenCola.</p>
+
+        <p>The objective: optimize a Python-based <strong>MCP (Model Context Protocol) server</strong> to handle industrial-scale file ingest events — a system that was going to be the backbone of a live demo for <strong>NVIDIA at GTC 2026.</strong></p>
+
+        <h3>The Problem</h3>
+
+        <p>The original system followed a <em>reactive waterfall</em> pattern: for every file event detected, it spawned multiple subprocesses — to hash the file, query a database, and log the result. At small scale, this worked fine. But when subjected to the kind of "event storm" that happens when thousands of files are dropped simultaneously, the server attempted to spawn <strong>2,000+ Linux processes at once</strong>, creating a fork bomb that consumed all CPU cycles for kernel-level context switching, caused database connection timeouts, and eventually hung the entire system.</p>
+
+        <p>The performance at the start of my contract: <strong>60 files per second.</strong><br>
+        The target: <strong>1,000+ files per second.</strong></p>
+
+        <h3>The Solutions</h3>
+
+        <p><strong>Fix 1: Proactive Snapshotting (eliminating the fork bomb)</strong></p>
+
+        <p>I refactored the discovery client from a reactive to a <em>proactive</em> architecture. Instead of making a subprocess call per file to check whether it was already known to the system, the client now pulls a full snapshot of known file hashes into memory every 10 seconds and performs all existence checks as in-memory lookups.</p>
+
+        <p>Result: per-file existence checks went from ~200ms (CLI subprocess overhead) to <strong>under 0.01ms</strong> (RAM lookup) — a <strong>20,000x speedup</strong> for that operation — and the fork bomb was eliminated entirely.</p>
+
+        <p><strong>Fix 2: Sampled Hashing (eliminating the I/O bottleneck)</strong></p>
+
+        <p>Hashing multi-gigabyte files — like the model weights and datasets common in AI workflows — in their entirety created an I/O bottleneck. I implemented a <em>sampled fingerprinting</em> approach: instead of reading the whole file, the hasher reads <strong>128KB chunks from the head, middle, and tail</strong> of each file. To maintain integrity, the file's total size is mixed into the final hash, ensuring that two files with identical sampled chunks but different total sizes produce different fingerprints.</p>
+
+        <p>Result: hashing became effectively constant-time regardless of file size.</p>
+
+        <h3>Results</h3>
+
+        <table>
+        <thead>
+            <tr>
+            <th>Metric</th>
+            <th>Before</th>
+            <th>After</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <td>Throughput</td>
+            <td>60 files/sec</td>
+            <td>420 files/sec (targeting 1,000+)</td>
+            </tr>
+            <tr>
+            <td>CPU efficiency</td>
+            <td>2 files/sec per 1% CPU</td>
+            <td>10.85 files/sec per 1% CPU</td>
+            </tr>
+            <tr>
+            <td>Existence check latency</td>
+            <td>~200ms</td>
+            <td>&lt;0.01ms</td>
+            </tr>
+        </tbody>
+        </table>
+        &nbsp;
+        <p><strong>The work was presented at NVIDIA's GTC 2026 conference</strong> as part of a live AI data platform demo, and was featured in Hammerspace's NVIDIA AI Data Platform integration work.</p>
+
+        <h3>Technologies</h3>
+
+        <p>Python, MCP (Model Context Protocol), SHA-256 sampled hashing, MySQL, Linux process management, distributed file systems, AI/ML infrastructure</p>
+
+        <a name="twit"></a>
+        <h2>My appearances on <em>This Week in Tech</em></h2>
         <iframe width="600" height="338" src="https://www.youtube.com/embed/rNjdlA7u_t4?si=eD2_bqXimWVnqqkG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <p>I started 2026 with a bang, as a guest panelist on <a href="https://twit.tv/shows/this-week-in-tech/episodes/1065">episode 1065 of the <em>This Week in Tech</em> podcast</a> with host Leo Laporte and fellow guest panelist Dan Patterson of Blackbird.ai.</p>
+        <p>I started 2026 with a bang, as a guest panelist on <a href="https://twit.tv/shows/this-week-in-tech/episodes/1065">episode 1065 of the <em>This Week in Tech</em> podcast</a> with host <a href="https://en.wikipedia.org/wiki/Leo_Laporte">Leo Laporte</a> and fellow guest panelist Dan Patterson of Blackbird.ai.</p>
+
+        <iframe width="600" height="338" src="https://www.youtube.com/embed/jPuXG1OMZ7c?si=0faXI8eHbV44PLlW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p>Then, in March, I was invited back for a second appearance on <a href="https://twit.tv/shows/this-week-in-tech/episodes/1074">episode 1074</a>, which featured my old friend and former boss, and now author of many books (including <a href="https://us.macmillan.com/books/9780374619329/enshittification/"><em>Enshittification</em></a>), <a href="https://en.wikipedia.org/wiki/Cory_Doctorow">Cory Doctorow</a>!</p>
 
         <a name="hp_zgx_nano"></a>
         <h2>HP ZGX Nano</h2>
@@ -185,15 +260,15 @@
         <a name="presentations_and_videos"></a>
         <h2>Presentations and videos</h2>
 
-        <p>Here’s a selection of my recent and upcoming presentations, as well as some videos that I’ve made...</p>
+        <p>Here’s a selection of my presentations, as well as some videos that I’ve made...</p>
 
-        <h3>Upcoming presentations</h3>
+        <h3>Kansas City Developer Conference 2025: <em>The Best, Most Fun Python Platform You’ve Never Heard Of.</em></h3>
 
         <p><img src="images/kcdc 2025 presentation.png" width="500" /></p>
 
-        <p><strong>I’ll be giving a talk at the 2025 <a href="https://www.kcdc.info/">Kansas City Developer Conference</a> titled <em>The Best, Most Fun Python Platform You’ve Never Heard Of.</em></strong> It will be a programmer’s introduction to the powerful, fun, and all-too-often-ignored <a href="https://www.renpy.org/">Ren’Py</a> visual novel engine.</p>
+        <p><strong>I gave a talk at the 2025 <a href="https://www.kcdc.info/">Kansas City Developer Conference</a> titled <em>The Best, Most Fun Python Platform You’ve Never Heard Of.</em></strong> It was a programmer’s introduction to the powerful, fun, and all-too-often-ignored <a href="https://www.renpy.org/">Ren’Py</a> visual novel engine.</p>
 
-        <p>Here’s my abstract for the talk:</p>
+        <p>Here’s the abstract for the talk:</p>
 
         <blockquote>
         <p>Python’s occupied the number one spot on the TIOBE Programming Community Index for the past couple of years, and it’s the preferred programming language in for AI and data science. Perhaps you’ve been thinking about learning it, but the thought of having to do another set of “Hello World” style exercises is filling you with dread. Is there a more fun way to get up to speed with Python?</p>
@@ -232,15 +307,19 @@
         <p><strong>I was the only presenter (and the highest-rated one!) at <a href="https://www.rwdevcon.com/">RWDevCon 2018</a> (a tutorial conference for iOS and Android developers) to have <em>two</em> sessions,</strong> both on developing augmented reality apps for iOS devices using Apple’s then-new ARKit.</p>
 
         <p>Here’s my four-hour workshop on the day before the main conference, where I led attendees through the building of four AR apps:</p>
-        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/_sjyaDhKk2Q?si=4wwvej5vznU4vDyC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/_sjyaDhKk2Q?si=4wwvej5vznU4vDyC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
         <p>And here’s my main conference session, a shortened version of the pre-conference workshop, where led attendees through building two AR apps:</p>
-        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/0bea2V8Jrw4?si=PUVC3DsIpxPpfnHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/0bea2V8Jrw4?si=PUVC3DsIpxPpfnHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 
         <h3>Technology career presentations</h3>
 
-        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/Msp7yN3my5c?si=FdH9u8PEmD7__UIt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        <p>On May 17, 2025 at BSides Tampa, Anitra Pavka and I gave a very timely presentation: <em>Surviving Your Layoff</em>:</p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/nZwoiBqGjgo?si=73qVASRycZyJB1D6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        
+        <p>A year earlier, I covered the topic in a video on the <em>Global Nerdy</em> YouTube channel:</p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/Msp7yN3my5c?si=FdH9u8PEmD7__UIt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
         <ul>
             <li><a href="https://www.youtube.com/watch?v=Msp7yN3my5c">How to survive and what to do at your layoff meeting</a> @ <a href="https://www.youtube.com/@globalnerdy">Global Nerdy YouTube channel</a>, June 2024</li>
@@ -308,7 +387,7 @@
 
         <p><strong>Prior to moving to Tampa in 2014, I was heavily involved in Toronto’s tech scene.</strong> I was one of the four stewards of <a href="https://benv.ca/blog/posts/the-community-startup-scenes-we-lost">DemoCamp,</a> a series of community-driven “show and tell” events that showcased local talent and fostered collaboration that ran from the mid-2000s to the mid 2010s. Here’s an episode of the old Toronto-based YouTube show <em>Byte Club</em> that covered DemoCamp:</p>
 
-        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/UpVqyef7o-0?si=9ytR24GQGXqQzPGb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/UpVqyef7o-0?si=9ytR24GQGXqQzPGb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 
         <a name="miscellaneous_oddities"></a>
@@ -339,7 +418,7 @@
 
         <p>When it came time to pick an image to represent the everyday developer, they simply did an image search and found a picture they liked. Guess who they picked!</p>
 
-        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/XYtNt7mAEpk?si=Tfh8OSgG9hSvnoXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/XYtNt7mAEpk?si=Tfh8OSgG9hSvnoXs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 
         <h3>My short-lived <em>Sesame Street</em>-style children’s show, complete with puppet co-host</h3>
@@ -350,7 +429,7 @@
 
         <p>Here’s episode 1, <em>Making Games with Kodu</em>...</p>
 
-        <p><iframe width="560" height="315" src="https://www.youtube.com/embed/NVQZLgH-Xxc?si=OhmjZwWPNgynXdFp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
+        <p><iframe width="600" height="338" src="https://www.youtube.com/embed/NVQZLgH-Xxc?si=OhmjZwWPNgynXdFp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
         <p>...and here are the other two videos we produced:</p>
 
